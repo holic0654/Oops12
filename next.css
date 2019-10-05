@@ -1,0 +1,205 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.sun
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  box-shadow: 0 0 10px rgba(255, 214, 0),
+              0 0 20px rgba(255, 214, 0),
+              0 0 30px rgba(255, 214, 0),
+              0 0 40px rgba(255, 214, 0),
+              0 0 500px rgba(255, 214, 0),
+              0 0 5px rgba(255, 214, 0, 0.7);
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: rgba(255, 214, 0, 1);
+  
+}
+.loader
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0);
+}
+.loader .face
+{
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.loader .face.face1
+{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  border-radius: 50%;
+  animation: animate 5s linear infinite;
+}
+.loader .face.face2
+{
+  top: -25%;
+  left: -25%;
+  right: -25%;
+  bottom: -25%;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 10px rgba(166, 255, 0, 0.5);
+  border-radius: 50%;
+  animation: animate 9s linear reverse infinite;
+}
+.loader .face.face3
+{
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 10px rgba(0, 226, 255, 0.5);
+  border-radius: 50%;
+  animation: animate 3.5s linear infinite;
+}
+.loader .face.face4
+{
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 10px rgba(255, 251, 0, 0.5);
+  border-radius: 50%;
+  animation: animate 12s linear reverse infinite;
+}
+.loader .face .circle
+{
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 50%;
+  width: 50%;
+  height: 1.5px;
+  transform-origin: left;
+}
+.loader .face.face1 .circle
+{
+  transform: rotate(-45deg);
+}
+.loader .face.face2 .circle
+{
+  transform: rotate(-45deg);
+}
+.loader .face.face3 .circle
+{
+  transform: rotate(-45deg);
+}
+.loader .face.face4 .circle
+{
+  transform: rotate(-45deg);
+}
+.loader .face1 .circle:before
+{
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  top: -4px;
+  right: -6px;
+}
+.loader .face2 .circle:before
+{
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  top: -4px;
+  right: -6px;
+}
+.loader .face3 .circle:before
+{
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  top: -4px;
+  right: -6px;
+}
+.loader .face4 .circle:before
+{
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  top: -4px;
+  right: -6px;
+}
+.loader .face.face1 .circle:before
+{
+  background: rgba(255, 0, 0);
+  box-shadow: 0 0 20px rgba(255, 0, 0),
+              0 0 40px rgba(255, 0, 0),
+              0 0 60px rgba(255, 0, 0),
+              0 0 80px rgba(255, 0, 0),
+              0 0 100px rgba(255, 0, 0),
+              0 0 5px rgba(134, 255, 0, 0.7);
+}
+.loader .face.face2 .circle:before
+{
+  background: rgba(166, 255, 0);
+  box-shadow: 0 0 20px rgba(166, 255, 0),
+              0 0 40px rgba(166, 255, 0),
+              0 0 60px rgba(166, 255, 0),
+              0 0 80px rgba(166, 255, 0),
+              0 0 100px rgba(166, 255, 0),
+              0 0 5px rgba(0, 226, 255, 0.7);
+}
+.loader .face.face3 .circle:before
+{
+  background: rgba(0, 226, 255, 1);
+  box-shadow: 0 0 20px rgba(0, 226, 255, 1),
+              0 0 40px rgba(0, 226, 255, 1),
+              0 0 60px rgba(0, 226, 255, 1),
+              0 0 80px rgba(0, 226, 255, 1),
+              0 0 100px rgba(0, 226, 255, 1),
+              0 0 5px rgba(0, 226, 255, 0.7);
+}
+.loader .face.face4 .circle:before
+{
+  background: rgba(255, 251, 0);
+  box-shadow: 0 0 20px rgba(255, 251, 0),
+              0 0 40px rgba(255, 251, 0),
+              0 0 60px rgba(255, 251, 0),
+              0 0 80px rgba(255, 251, 0),
+              0 0 100px rgba(255, 251, 0),
+              0 0 5px rgba(0, 226, 255, 0.7);
+}
+@keyframes animate
+{
+  0%
+  {
+    transform: rotate(0deg);
+  }
+  100%
+  {
+    transform: rotate(360deg);
+  }
+}

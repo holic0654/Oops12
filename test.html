@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Indie+Flower|Alfa+Slab+One" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" herf="mus.css">
+  <title>Oops!_Orbital</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    a{color:#FFFFFF; text-decoration:none;}
+  </style>
+  <style>
+    #cover{
+        position: absolute;
+        height: 100px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+    #content1{
+      font-size: 1.5em;
+      font-family: "Alfa Slab One", cursive;
+      text-shadow: 5px 5px 4px #000;
+      letter-spacing: 0.1em;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      z-index: 2;
+      text-align: center;
+    }
+    #content2{
+      font-size: 1em;
+      font-family: "Do Hyeon", sans-serif;
+      text-shadow: 2px 2px 4px #000;
+      letter-spacing: 0.1em;
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      color: white;
+      z-index: 2;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+<div id="cover"></div>
+<div id="content1">
+  <h1 style="text-align:center"><a href="index.html"><strong>Oops!</strong></a><h1>
+</div>
+<div id="content2">
+  <h2>궤도</h2>
+</div>
+
+<div class="trail">
+  <div class="pointer pointer1"></div>
+  <div class="pointer pointer2"></div>
+  <div class="pointer pointer3"></div>
+  <div class="pointer pointer4"></div>
+  <div class="pointer pointer5"></div>
+</div>
+<script src="mous.js"></script>
+<script type="text/javascript">
+  $(document).mousemove(function(e){
+    $('.pointer').css({left:e.pageX, top:e.pageY});
+  })
+</script>
+</body>
+</html>

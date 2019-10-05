@@ -1,0 +1,25 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  background-color: #2b2f3c;
+}
+a
+{
+  position: absolute;
+  margin: auto;
+  top:  70%;
+  left: 90%;
+  transform: translate(-50%,-50%);
+  width: 10em;
+  height: 5em;
+  line-height: 200px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Do Hyeon", sans-serif;
+  text-shadow: 1px 1px 1px #000;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 8px solid transparent;
+  z-index: 3;
+}

@@ -1,0 +1,69 @@
+
+body
+{
+  
+  margin: 0;
+  padding: 0;
+  background: #000;
+  /* backgroung 지정 안한 상태 */
+}
+a
+{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 180px;
+  height: 60px;
+  text-align: center;
+  line-height: 55px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 25px;
+  box-shadow:  1.5px 1.5px 2px #303030;
+  z-index: 3;
+}
+a:hover
+{
+  
+  animation: button_animate 10s 0.5s linear infinite;
+}
+@keyframes button_animate /* @keyframes : CSS 애니메이션 구현. button_animate : 애니메이션 명 사용자 지정*/
+{
+  from   /* 0% */
+  {
+    background-position: 0%;
+  }
+  to /* 100% */
+  {
+    background-position: 400%;
+  }
+}
+a:before
+{
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 40px;
+  filter:blur(8px);
+  opacity: 0;
+  transition: 0.8s;
+}
+a:hover:before
+{
+  filter:blur(8px);
+  opacity: 1;
+  animation: button_animate 10s 0.5s linear infinite;
+}

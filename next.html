@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Alfa+Slab+One" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="next.css">
+  <title>Oops!_Index</title>
+  <meta charset="utf-8">
+  <style>
+    #img{
+     
+
+      background-image: url("star.gif");
+      background-position: relative;
+      background-repeat: no-repeat;
+      height: 100vh;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    #music{
+      position: absolute;
+      top: 95%;
+      left: 1%;
+    }
+    .description{
+      position: absolute;
+      height: 10em;
+      width: 23em;
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 1.5px 1.5px 2px #000;
+      border-radius: 10px;
+      border: 0.8px solid rgba(0, 0, 0, 1);
+      top: 50%;
+      left: -1400%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      padding: 10px;
+      font-size: 2.5em;
+      font-family: "Do Hyeon", sans-serif;
+      text-shadow: 2px 2px 4px #000;
+      letter-spacing: 0.1em;
+      color: white;
+      text-align: center;
+      display: none;
+    }
+    #content1{
+      font-size: 0.8em;
+      font-family: "Do Hyeon", sans-serif;
+      text-shadow: 2px 2px 4px #000;
+      letter-spacing: 0.1em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      z-index: 2;
+      text-align: center;
+    }
+    #content1:hover .description{
+      display: block;
+    }
+    #atn{
+      position: absolute;
+      transform: translate(-50%, 60%);
+      left: 82%;
+    }
+    #ops{
+      position: absolute;
+      transform: translate(-50%, 150%);
+      left: 80%;
+    }
+    #sc{
+      position: absolute;
+      transform: translate(-50%, 40%);
+      left: 92%;
+    }
+    #rocket{
+      position: absolute;
+      transform: translate(-50%, 22%);
+      left: 32%;
+    }
+  </style>
+
+  <style type="text/css">
+    a{color:#FFFFFF; text-decoration:none;}
+  </style>
+  <link rel="stylesheet" type="text/css" href="button2_style.css">
+  <link rel="stylesheet" type="text/css" href="move.css">
+</head>
+<body>
+
+  <div id="music">
+    <audio autoplay src="Next_narration.wav" controls autoplay>
+    </audio>
+  </div>
+
+  <div id="img"></div>
+
+  <div class="move1">
+    <div id="atn"><img src="atn.png" width="400px"></div>
+  </div>
+  <div class="move2">
+    <div id="ops"><img src="ops.png" width="150px"></div>
+  </div>
+  <div class="move3">
+    <div id="sc"><img src="sc.png" width="300px"></div>
+  </div>
+  <div class="move4">
+    <div id="rocket"><img src="rocket.png" width="500px"></div>
+  </div>
+  <div class="move5">
+    <a href="#"><a href="solarbe.html">NEXT</a></a>
+  </div>
+
+  <div class="loader">
+    <div class="sun"></div>
+    <div class="face face1">
+      <div class="circle"></div>
+    </div>
+    <div class="face face2">
+      <div class="circle"></div>
+    </div>
+    <div class="face face3">
+      <div class="circle"></div>
+    </div>
+    <div class="face face4">
+      <div class="circle"></div>
+    </div>
+
+    <div id="content1">
+      <h1 style="text-align:center">궤도</h1>
+      <div class="description">
+          <h2>궤도란?</h2>
+          어떠한 물체가 중력에 의해 움직임을 구속 받아 다른 물체 주위를 도는 현상을 궤도운동이라고 하는데 이 때,
+           물체가 궤도운동을 따라 움직이는 길을 궤도라고 합니다.
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

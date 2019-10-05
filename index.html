@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Indie+Flower|Alfa+Slab+One" rel="stylesheet">
+  <!-- 구글폰츠의 링크를 따와 바로 폰트를 사용 가능한 태그, famliy= 뒤에 사용하고자 하는 폰트의 이름을 적어줘야하며
+     |가 ,의 역할을 대신하고 띄어쓰기는 +로 대채해준다. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Oops!</title> <!-- 웹 페이지의 창에 걸리는 제목 태그이다. -->
+  <script src="parallax.js"></script>
+  <meta charset="utf-8"> <!-- 한글을 깨지지 않게 해주는 태그이다. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>  /* body안에 있는 우리가 사용하고자 하는 글자나 이미지나 도형의 스타일을 지정해주는 태그이다. */
+   /* <div></div> 태그를 사용하며, id="ㅇ"를 사용하면 #ㅇ{}선택자를 사용하고 class="ㅁ"를 사용하면 .ㅁ{}의 선택자를 사용한다.
+      ""안의 내용은 본인이 맘대로 지정할 수 있다. 또한 <p></p>태그나 <h1></h1>태그도 그냥 p{}, h1{}의 선택자로 사용할 수 있다.*/
+      
+		#music{
+			position: absolute;
+			top: 95%;
+			left: 1%;
+      z-index: 5;
+		}
+    #content1{
+      font-size: 5.5em; /* 폰트 사이즈를 지정해주는 스타일이다. 제목 크기를 5.5em으로 지정해줬다. em은 절대적인 크기로 잘 쓰인다. */
+      font-family: "Alfa Slab One", cursive;  /* 위에서 불러온 폰트를 적용해주는 스타일이다. "사용하고자하는폰트이름", cursive는
+                                                 흘려쓰는 느낌의 폰트이다. */
+      text-shadow: 5px 5px 4px #000;  /* 글자의 그림자를 지정해주는 스타일이다. 위아래px 좌우px 흐림정도px 그림자 색상 순으로
+                                         그림자를 생성한다. */
+      letter-spacing: 0.05em; /* 글자 하나하나의 간격을 조정해주는 스타일이다. 역시 절대적인 크기인 em단위를 사용하였다. */
+      position: absolute; /* 포지션을 정해주는 스타일이다. */
+      top: 30%; /* 위에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      left: 50%; /* 왼쪽에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      transform: translate(-50%, -50%); /* 중앙 정렬을 해주는 스타일이다!!! */
+      color: white; /* 글자 색상을 지정해주는 스타일이다. */
+      z-index: 2; /* z 방향으로 두번째에 있는 레이어라는 의미인 듯 하다. */
+      text-align: center; /* 글자를 정렬해 주는 스타일이다. center는 가운데를 의미, left, right 등 사용 가능하다. */
+    }
+    #box{
+      position: absolute; /* 포지션을 정해주는 스타일이다. */
+      height: 0.1em; /* 박스의 높이를 지정해주는 스타일이다. 세로길이 0.1em의 크기의 박스를 만들었다. */
+      width: 310px; /* 박스의 가로를 지정해주는 스타일이다. 가로길이 300px의 크기의 박스를 만들었다. */
+      background-color: white; /* 박스의 색상을 지정해주는 스타일이다. */
+      box-shadow: 1.5px 1.5px 2px #000;  /* 박스에 그림자를 지정해주는 스타일이다. 위아래px 좌우px 흐림정도px 그림자 색상 순으로
+                                         그림자를 생성한다. */
+      top: 42%; /* 위에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      left: 50%; /* 왼쪽에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      transform: translate(-50%, -50%); /* 중앙 정렬을 해주는 스타일이다!!! */
+      z-index: 2; /* z 방향으로 두번째에 있는 레이어라는 의미인 듯 하다. */
+    }
+    #content2{
+      font-size: 1.5em; /* 폰트 사이즈를 지정해주는 스타일이다. 제목 크기를 5.5em으로 지정해줬다. em은 절대적인 크기로 잘 쓰인다. */
+      font-family: "Black Han Sans", cursive; /* 위에서 불러온 폰트를 적용해주는 스타일이다. "사용하고자하는폰트이름", cursive는
+                                                 흘려쓰는 느낌의 폰트이다. */
+      text-shadow: 1.5px 1.5px 2px #000;  /* 글자의 그림자를 지정해주는 스타일이다. 위아래px 좌우px 흐림정도px 그림자 색상 순으로
+                                         그림자를 생성한다. */
+      position: absolute; /* 포지션을 정해주는 스타일이다. */
+      top: 45%; /* 위에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      left: 53%; /* 왼쪽에서 부터 어느정도 떨어뜨릴 것인지 지정해주는 스타일이다. */
+      color: white; /* 글자 색상을 지정해주는 스타일이다. */
+      z-index: 2; /* z 방향으로 두번째에 있는 레이어라는 의미인 듯 하다. */
+      text-align: left; /* 글자를 정렬해 주는 스타일이다. left는 왼쪽 정렬을 의미, center, right 등 사용 가능하다. */
+    }
+    #scene{
+      max-width: 100%;
+      top: -5%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="button_style.css">
+  <!-- 버튼의 링크를 불러오는 함수이다. 버튼의 css파일을 따로 폴더에 생성해서 사용한다. -->
+  <link rel="stylesheet" href="PalEffect.css">
+</head>
+<body>
+  <div id="music">
+    <audio autoplay src="Index_narration.wav" type="audio/wav" controls>
+    </audio>
+  </div>
+  <div class="container"> <!-- div 태그는 10번 째 줄에 자세히 설명되어있다. -->
+    <ul id="scene">
+      <li class="layer" data-depth=".1"><img src="planet1.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="-0.3"><img src="planet2.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="0.7"><img src="planet3.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="0.7"><img src="planet4.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="-0.5"><img src="planet5.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="-0.7"><img src="planet6.png" width="100%" height="100%">
+      </li>
+      <li class="layer" data-depth="-2"><img src="astronut.png" width="100%" height="100%">
+      </li>
+    </ul>
+  </div>
+  <script>
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+  </script>
+
+  <div id="content1">
+    Oops!
+  </div>
+  <div id="box"></div>
+  <div id="content2">
+     # 떠나요 <br> # 우주여행 <!-- <br>태그는 엔터를 의미한다. -->
+  </div>
+  <a href="#"><a href="next.html">START</a></a> <!-- <a href="(링크)"></a>태그는 클릭시 링크로 이동할 수 있음을 의미한다.
+                                                     버튼을 css 파일로 불러왔다.-->
+</body>
+</html>
+<!--darkcode-->

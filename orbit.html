@@ -1,0 +1,255 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Oops!_Orbit</title>
+
+	<style>
+			#music{
+				position: absolute;
+				top: 95%;
+				left: 1%;
+			}
+			body {
+				background-color: #000000;
+				margin: 0;
+				overflow: hidden;
+			}
+			.copyInfo {
+				position: absolute;
+				background-color: white;
+				color: #ffffff;
+				z-index: 1;
+			}
+			#qs{
+        position: absolute;
+        background-repeat: no-repeat;
+        transform: translate(-50%, 3020%);
+        left:98.5%;
+        z-index: 3;
+      }
+			/*
+      .dec{
+        background-image: url("solarde.png");
+        position: absolute;
+        background-repeat: no-repeat;
+        top: 0;
+        height: 100vh;
+        background-size: cover;
+        z-index: 4;
+        display: none;
+      }
+      #qs:hover .dec{
+        display: block;
+      }
+			*/
+	</style>
+</head>
+<body>
+	<div id="music">
+		<audio autoplay controls src="Orbit_narration.wav" type="audio/wav">
+		</audio>
+	</div>
+
+	<div id="qs"><a href="orbitdec.html"><img src="qus.png" width="30px"></a></div> <!--물음표 넣음-->
+
+	<div class="dec"></div>
+
+	<div id="container"></div>
+	<div class="copyInfo">Lab for Navigation, Control, and Application, Dept. Aerospace Eng., Chosun Univ.</div>
+	<input type="file" id="upLoad" style="display:none;">
+
+	<!-- JavaScript Files Load -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/three.js"></script>
+	<script src="js/dat.gui.min.js"></script>
+	<script src="js/math.min.js"></script>
+
+	<script src="js/Detector.js"></script>
+	<script src="js/TrackballControls.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/loaders/OBJLoader.js"></script>
+	<script src="js/loaders/MTLLoader.js"></script>
+	<script src="js/loaders/OBJMTLLoader.js"></script>
+
+	<script src="js/THOR_v1.2.1.js"></script>
+	<script src="js/iGCS_gui_v1.1.2.js"></script>
+	<script src="js/events.js"></script>
+	<script src="js/FileUpload.js"></script>
+
+	<!-- Main -->
+	<script type="text/javascript">
+		// Global Variables
+		var scene, renderer, camera, controls;
+		var starField, sunLight, earth, moon;
+		var width = window.innerWidth, height = window.innerWidth;
+
+		// Planets Constants
+		// Gravitional
+		var mu_s = 132712000000;
+		var mu_e = 398600;
+		// Earth
+		var a_e    = 149598023;
+		var e_e    = 0.0167086;
+		var RA_e   = -11.26*Math.PI/180;
+		var incl_e = 7.16*Math.PI/180;
+		var AP_e   = 114.21*Math.PI/180;
+		var TA_e   = 0;
+		var h_e    = Math.sqrt(a_e*mu_s*(1 - Math.pow(e_e, 2)));
+		// Moon
+		var a_m    = 384748;
+		var e_m    = 0.0549006;
+		var RA_m   = 0;
+		var incl_m = 5.14*Math.PI/180;
+		var AP_m   = 0;
+		var TA_m   = 0;
+		var h_m    = Math.sqrt(a_m*mu_e*(1 - Math.pow(e_m, 2)));
+
+		// Planets Variables
+		var scl = 10000;
+		var sfRadius = 300000, sfSeg = 128;
+		var slRadius = 695500/scl, slSeg = 64;
+		var etRadius = 6378/scl, etSeg = 36, earth_pst = 0;
+		var mnRadius = 1738/scl, mnSeg = 36, moon_pst  = 0;
+
+		// temp
+		var temp = true, tempPst, k = 0; idx_ani = 0;
+
+		//
+		init();
+		animate();
+		displayGUI(earth);
+
+		//
+		function init(){
+			// Event
+			window.addEventListener('resize', onWindowResize, false);
+			// Basic
+			scene  = new THREE.Scene();
+			//
+			camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 50000000);
+			camera.position.set(0, 0, 10);
+			//
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);	// ???
+			renderer.setSize(width, height);
+			container.appendChild(renderer.domElement);
+			//
+			controls = new THREE.OrbitControls(camera, renderer.domElement);	// For Preventing conflicts with dat.gui
+
+			// Solar System
+			starField = new THOR.SolarSystem.starField(sfRadius, sfSeg);
+			scene.add(starField);
+			//
+			sunlight = new THOR.SolarSystem.Sun(slRadius, slSeg);
+			scene.add(sunlight);
+			scene.add(new THREE.AmbientLight(0x333333));
+			//
+			earth = new THOR.SolarSystem.Earth(etRadius, etSeg);
+			earth.add(camera);
+			scene.add(earth);
+			//
+			moon = new THOR.SolarSystem.Moon(mnRadius, mnSeg);
+			earth.add(moon);
+			/*
+			ECI = new THREE.AxisHelper(1);
+			earth.add(ECI);
+			*/
+
+			// Orbit
+			earthOrb = THOR.Orbit.OrbitalSixElements(h_e, e_e, RA_e, incl_e, AP_e, TA_e, mu_s);
+			earthOrb.name = "Earth Orbit";
+			earthOrb.material.color.setHex("0x00bbff");
+			earthOrb.material.transparent = true;
+			earthOrb.material.opacity = 0.4;
+			earthOrb.position.set(0, 0, 0);
+			scene.add(earthOrb);
+
+			moonOrb = THOR.Orbit.OrbitalSixElements(h_m, e_m, RA_m, incl_m, AP_m, TA_e, mu_e);
+			moonOrb.name = "Moon Orbit";
+			moonOrb.material.color.setHex("0xaaaaaa");
+			moonOrb.material.transparent = true;
+			moonOrb.material.opacity = 0.4;
+			moonOrb.position.set(earth.position.x, earth.position.y, earth.position.z);
+			scene.add(moonOrb);
+
+			//temp = satObj(earth, 0, 0, 0);
+			// Event
+			window.addEventListener('resize', onWindowResize, false);
+
+		}
+		// File Load
+		window.onload = function(){
+			document.getElementById("upLoad").onchange = function(){
+				var loadOrbit = LoadFile.readFile('upLoad', 'UTF-8');
+				earth.add(loadOrbit);
+			}
+		}
+
+		//
+		function animate(){
+			requestAnimationFrame(animate);
+			//controls.update();
+
+			//SolarAni();
+			/*for (var i = 4; i<earth.children.length; i++)
+			{
+				SatAni(i, k);
+			}
+			k++;
+			if (k === 5000) {k = 0;}*/
+
+			renderer.render( scene, camera );
+		}
+
+		function SolarAni(){
+			var time = Date.now()*0.001;	// milli sec -> sec
+
+			sunlight.rotation.y = 0.000002797*time;					// Sun Rotation
+
+			//earth.rotation.y = 0.00007295*time;						// Earth Rotation
+			earth.children[0].rotation.y = 0.0025*time;   // Earth_Cloud Rotation
+			//earth.position.x = Math.sin(0.0000001992*time)*14959;   // Earth RevolutionX
+			//earth.position.z = Math.cos(0.0000001992*time)*14959;	// Earth RevolutionZ
+
+			moon.rotation.y = 0.000002693*time;						// Moon Rotation
+			//moon.position.x = Math.sin(0.000002693*time)*38.4400;	// Moon RevolutionX
+			//moon.position.z = Math.cos(0.000002693*time)*38.4400;	// Moon RevolutionZ
+		}
+
+		function SatAni(i, k) {
+			if (earth.children[i] != undefined)
+			{
+				var time1 = Date.now()/1000;
+				var k0 = earth.children[i].positionData.animationTime[k];
+				var k1 = earth.children[i].positionData.animationTime[k+1];
+				var k2 = earth.children[i].positionData.animationTime[k+2];
+
+				if (temp)
+				{
+					earth.children[i].currentTime = Date.now()/1000;
+					temp = false;
+				}
+
+				if ((time1 - earth.children[i].currentTime) > (k1 - k0) && (time1 - earth.children[i].currentTime) < (k2 - k1))
+				{
+					earth.children[i].children[3].position.x = earth.children[i].positionData[k].x;
+					earth.children[i].children[3].position.y = earth.children[i].positionData[k].y;
+					earth.children[i].children[3].position.z = earth.children[i].positionData[k].z;
+
+					//idx_ani++;
+					//k++;
+					temp = true;
+
+					if (idx_ani === earth.children[i].positionData.length)
+					{
+						idx_ani = 0;
+						k = 0;
+					}
+				}
+			}
+
+		}
+
+	</script>
+</body>
+</html>
